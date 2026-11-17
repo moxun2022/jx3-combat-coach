@@ -23,7 +23,7 @@ def test_frontend_and_original_file_upload(tmp_path):
     with TestClient(create_app(str(tmp_path / 'ui.sqlite3'))) as client:
         page = client.get('/')
         assert page.status_code == 200
-        assert '开始解析' in page.text
+        assert '解析战斗日志' in page.text
         raw = '0\t1\t1700000000\t1000\t4\t{1,"角色"}\n'.encode('gbk')
         response = client.post('/api/v1/analyses/file?encoding=gbk', content=raw)
         assert response.status_code == 201
